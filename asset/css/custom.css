@@ -1,0 +1,181 @@
+@import url(http://fonts.googleapis.com/css?family=Tangerine);
+@import url(http://fonts.googleapis.com/css?family=Coda);
+
+body {
+	padding-top: 20px;
+	padding-bottom: 60px;
+	background-color: #FFF;	font-size:15px;
+}
+
+.navbar .brand{
+	font-size:2em;
+}
+
+.container {
+	margin: 0 auto;
+	max-width: 1000px;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+	margin: 80px 0;
+	text-align: center;}
+.jumbotron h1 {
+	font-size: 90px;
+	line-height: 1;
+}
+.jumbotron h2 {
+	font-size: 50px;
+	line-height: 1;
+}
+.jumbotron .lead {
+	font-size: 24px;
+	line-height: 1.25;
+}
+.jumbotron .btn {
+	font-size: 21px;
+	padding: 14px 24px;
+}
+.jumbotron .custom{
+	font-size:14px;
+	padding: 5px 15px;
+}
+.navbar .brand{	font-weight:bold;
+	text-shadow:1px 1px #FFF;
+	color:#555;	font-family:"coda";	font-size:1.7em;
+}
+/* Supporting marketing content */
+.marketing {
+	margin: 60px 0;
+}
+.marketing p + h4 {
+	margin-top: 28px;
+}
+.clear{
+	clear:both;
+}
+.cleartop{
+	clear:both;
+	height:50px;
+}
+
+h2 a{
+	font-size:1em;
+	line-height:1.2;
+	text-decoration:none;
+	color:#000;
+}
+h2 a:hover{
+	text-decoration:none;
+	color:#222;
+}
+.row{
+	margin-left:0;
+}
+.center{
+	margin:auto;
+}
+.flabel{
+	background:#EEE;
+	color:#888;
+	text-align:center;
+	padding:5px;
+	font-family:coda;
+}
+.quote a, .list a{
+	color:#222;
+	text-decoration:none;
+}
+hr{
+	border-top:none;
+	border-bottom:solid 1px #EEE;
+}
+h2.profile{
+	margin-bottom:-5px;
+}
+#cilok{
+	text-align:center;
+	font-size:2em;
+	font-weight:bold;
+	color:#666;
+	border:none;
+	padding:20px;
+	width:91%;
+	border-radius:4px;
+	background:
+	radial-gradient(black 15%, transparent 16%) 0 0,
+	radial-gradient(black 15%, transparent 16%) 8px 8px,
+	radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+	radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+	background-color:#282828;
+	font-family:coda;
+	background-size:16px 16px;
+}
+.input-custom{
+	border:solid 1px #ddd;
+	padding:8px;
+	border-radius:4px;
+	width:96%;
+	margin:auto;
+	margin:1px;
+	font-family:coda;
+}
+.input-custom-select{
+	border:solid 1px #ddd;
+	border-radius:4px;
+	width:100%;
+	margin:auto;
+	font-family:coda;
+}
+.mini{
+	font-size:0.6em;
+}
+.medium{
+	font-size:0.8em;
+	border-top:solid 1px #DDD;
+}
+.card.hovercard, .card.hovercard img{
+	width:400px;
+}
+
+.list{
+	padding:20px 50px 20px 50px;
+	box-shadow:inset 0 2px 2px #DDD;
+	font-size:2em;
+	font-weight:200;
+	text-align:center;
+	line-height:1.25;
+}
+.list p{
+	font-size:12px;
+	padding-top:10px;
+	margin-top:10px;
+	text-align:right;
+	border-top:solid 1px #EEE;
+}
+.groupLabel{
+	width:30px;
+	background:#222;
+	border-bottom-right-radius:10px;
+	color:#FFF;
+	margin:-20px -20px -20px -50px;
+	padding:5px;
+	opacity:0.2;
+	font-size:0.7em;
+	text-align:center;
+	position:relative;
+	top:0; left:0;
+	transition:all 1s ease-in-out;
+}
+.groupLabel:hover{
+	opacity:1.0;
+	cursor:pointer;
+}.label-group{	position:relative;	width:100px; left:90%; top:10px;	text-align:center;	padding:10px;	transform:rotate(40deg);	color:#000;	font-size:1.3em;	font-family:coda;	cursor:pointer;	border-top:dashed 2px #FF0000;	border-bottom:dashed 2px #FF0000;	font-weight:bold;	opacity:0.2;	transition:1s;}.label-group:hover{	opacity:1.0;	transform:rotate(45deg);}.time{	text-align:center;	padding-top:10px;	font-family:coda;	font-size:1.2em;}
+.custom-search input, .custom-search input:focus{border:none; border-bottom:solid 1px #888; background:none; font-style:italic; box-shadow:none; margin-top:20px}
+.nav-list{width:200px;}
+.box-search{
+	padding:3px;
+	border-bottom:solid 1px #DDD;
+	color:#AAA;
+	font-size:0.7em;
+}
