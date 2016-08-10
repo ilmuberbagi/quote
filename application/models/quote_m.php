@@ -130,7 +130,7 @@ class Quote_m extends CI_Model{
 				c.group_name, concat('".site_url()."quotes/', concat(concat(c.group_name,'/'), a.qid)) as permalink, a.email
 				from quote a left join users b on a.email = b.email 
 				left join quote_group c on a.qig = c.qig where a.isi like '%$keyword%' or b.first_name like '$keyword%' or c.group_name = '$keyword' 
-				and a.status = 1";
+				and a.status = 1 order by tanggal desc";
 		return $this->db->query($sql)->result_array();
 	}
 	

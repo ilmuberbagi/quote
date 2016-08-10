@@ -29,13 +29,10 @@
 		<?php if(!empty($quote)){?>
 		<div class="label-group"><a href="<?php echo base_url().'search?q='.$quote[0]['group_name'];?>"><?php echo ucwords(strtolower($quote[0]['group_name']));?></a></div>
 		<img src="<?php echo $avatar;?>" width="50" height="50" class="img-circle" title="<?php echo $quote[0]['first_name'];?>">
-		<?php 
-			#print_r($quote);
-			#print_r($this->session->all_userdata());
-		?>
+
 		<?php $g = array(1=>'wisdom','spirit','joke'); ?>
 			<h2><a data-toggle="tooltip" title="" data-original-title="Klik untuk melihat quote lainnya" class="quote" href="<?php echo base_url().'quotes/'.$g[$quote[0]['qig']];?>"><font face="garamond" size="10" color="#d84a38">"</font><?php echo $quote[0]['isi'];?><font face="garamond" size="10" color="#d84a38">"</font></a></h2>
-			<p><?php echo "Quoter : <b><a href='".base_url('userQuote/'.md5($quote[0]['email']))."'>".$quote[0]['first_name']."</a></b>, Tanggal : ".date('d/M/Y , H:i:s', strtotime($quote[0]['tanggal']));?></p>
+			<p><?php echo "Quoter : <b><a href='".base_url('userQuote/'.md5($quote[0]['email']))."'>".$quoter."</a></b>, Tanggal : ".date('d/M/Y , H:i:s', strtotime($quote[0]['tanggal']));?></p>
 			
 			<p class="">
 				<?php if($isLove == 1){ $btnLove = 'btn-danger'; $lovetitle = 'Gajadi Love'; }else {$btnLove = ''; $lovetitle = 'Kasih Love'; } ?>

@@ -4,7 +4,6 @@
 	  <div class="row-fluid">
 		<div class="span3">
 			<!--profil content-->
-			<?php print_r($this->session->all_userdata());?>
 			<div class="card people">
 				<div class="card-top green">
 					<img src="<?php echo $avatar ? $avatar : 'http://portal.ilmuberbagi.id/assets/img/foto/default.png';?>" alt="">

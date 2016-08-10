@@ -85,8 +85,7 @@
 						  <li><a role="menuitem" tabindex="-1" href="<?php echo base_url().'profile';?>">Profile</a></li>
 						  <li><a role="menuitem" tabindex="-1" href="<?php echo base_url().'userQuote/'.md5($this->session->userdata('user_id'));?>">Quote Anda</a></li>
 						  <li class="divider"></li>
-						  <li><a role="menuitem" tabindex="-1" href="<?php echo base_url().'setting/'.md5($this->session->userdata('user_id'));?>">Setting</a></li>
-						  <?php if($this->session->userdata('user_id') == 'sabbana.returns@yahoo.com'){?>
+						  <?php $priv = $this->session->userdata('privilage'); if($priv['app_4'] >= 3){?>
 						  <li><a role="menuitem" tabindex="-1" href="<?php echo base_url().'webmaster';?>">Webmaster</a></li>
 						  <?php } ?>
 						  <li><a role="menuitem" tabindex="-1" href="<?php echo base_url().'logout';?>">Logout</a></li>

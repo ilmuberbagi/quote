@@ -53,13 +53,16 @@ class Quote extends CI_Controller{
 				));
 			$context  = stream_context_create($param);
 			$user_api = json_decode(file_get_contents(AUTH_API_URL, false, $context), TRUE);
-			
 		}
 		
 		$data['avatar'] = 'http://portal.ilmuberbagi.id/assets/img/foto/default.png';
 		if(!empty($user_api)){
+			$data['quoter'] = $user_api[0]['member_name'];
 			$avatar = $user_api[0]['member_image_profile'] ? $user_api[0]['member_image_profile'] : $data['quote'][0]['pic'];
 			$data['avatar'] = $avatar ? $avatar : 'http://portal.ilmuberbagi.id/assets/img/foto/default.png';			
+		}else{
+			$data['quoter'] = $data['quote'][0]['first_name'];
+			$data['avatar'] = $data['quote'][0]['pic'];
 		}
 		
 		$data['q1'] = $this->quote_m->getQuote(1);
@@ -238,6 +241,7 @@ class Quote extends CI_Controller{
 			}
 		
 			$email = $data['qlist'][0]['email'];
+			// echo $email; die();
 			# ====================
 			# api detail user get data and avatar
 			define('AUTH_API_URL','http://services.ilmuberbagi.id/member');
@@ -251,9 +255,17 @@ class Quote extends CI_Controller{
 				));
 			$context  = stream_context_create($param);
 			$user_api = json_decode(file_get_contents(AUTH_API_URL, false, $context), TRUE);
-			// $data['avatar'] = $this->session->userdata('avatar');
-			if(!empty($user_api))
+			if(!empty($user_api)){
+				$data['website'] = $user_api[0]['member_blog'];
+				$data['motivation'] = $user_api[0]['member_motivation'];
+				$data['quoter'] = $user_api[0]['member_name'];
 				$data['avatar'] = $user_api[0]['member_image_profile'] ?  $user_api[0]['member_image_profile']:'';
+			}else{
+				$data['website'] = $data['qlist'][0]['twitter'];
+				$data['motivation'] = $data['qlist'][0]['first_quote'];
+				$data['quoter'] = $data['qlist'][0]['first_name'];
+				$data['avatar'] = 'http://portal.ilmuberbagi.id/assets/img/foto/default.png';
+			}
 		}
 		$this->load->view('public/quoteList', $data);
 		$data['q1'] = $this->quote_m->getQuote(1);
@@ -318,9 +330,8 @@ class Quote extends CI_Controller{
 			$data['title'] = 'Setting Akun';
 			$this->load->view('public/header', $data);
 			$data['user'] = $this->quote_m->getCurrentUser($id);
-			
-			# ====================
 			# api detail user get data and avatar
+			# =================================
 			define('AUTH_API_URL','http://services.ilmuberbagi.id/member');
 			$params = array('api_kode' => 1002, 'api_datapost' => array('member_email'=> $data['user'][0]['email']));
 			$postdata = http_build_query($params);
@@ -343,28 +354,7 @@ class Quote extends CI_Controller{
 			$this->load->view('public/footer', $data);
 		}else{ redirect(''); }
 	}
-	
-	function updateakun(){
-		$id = md5($this->input->post('email'));
-		$data = array(
-			'first_name' => $this->input->post('fname'),
-			'last_name' => $this->input->post('lname'),
-			'twitter' => $this->input->post('twitter'),
-			'first_quote' => $this->input->post('fquote'),
-		);
-		$update = $this->quote_m->updateAkun($id, $data);
-		redirect('setting/'.$id);
-	}
-	
-	function changepass(){
-		$data = array(
-			'password' => $this->input->post('password'),
-			'password' => $this->input->post('password'),
-		);
-		$update = $this->quote_m->updateAkun($id, $data);
-		redirect('setting/'.$id);
-	}
-	
+		
 	function search(){		
 		$q = $_GET['q'];
 		$data['title'] = 'Quote Berbagi : Search = '.$q;
@@ -372,20 +362,34 @@ class Quote extends CI_Controller{
 		$this->load->view('public/header', $data);
 		
 		$data['quotes'] = $this->quote_m->searchQuote($q);
-		
+		if(!empty($data['quotes'])){
+			$a = 0;
+			define('AUTH_API_URL','http://services.ilmuberbagi.id/member');
+			foreach ($data['quotes'] as $q){
+				# api detail user get data and avatar
+				$params = array('api_kode' => 1002, 'api_datapost' => array('member_email'=> $q['email']));
+				$postdata = http_build_query($params);
+				$param = array('http' =>
+					array(
+						'method'  => 'POST',
+						'header'  => 'Content-type: application/x-www-form-urlencoded',
+						'content' => $postdata
+					));
+				$context  = stream_context_create($param);
+				$user_api = json_decode(file_get_contents(AUTH_API_URL, false, $context), TRUE);
+				if(!empty($user_api))
+					$data['quoter'][$a] = $user_api[0]['member_name'] ?  $user_api[0]['member_name']: 'anonymous';
+				else
+					$data['quoter'][$a] = $q['first_name'];
+				$a++;
+			}
+		}
 		$this->load->view('public/quoteListSearch', $data);
 		$data['q1'] = $this->quote_m->getQuote(1);
 		$data['q2'] = $this->quote_m->getQuote(2);
 		$data['q3'] = $this->quote_m->getQuote(3);
 		$this->load->view('public/footer', $data);
-	}
+	}	
 	
-	function test(){
-		$data = $this->db->query("select * from quote")->result_array();
-		print_r($data);
-	}
-	
-	
-
 }
 

@@ -6,16 +6,16 @@
 			<!--profil content-->
 			<div class="card people">
 				<div class="card-top green">
-					<?php $userAvatar = $avatar ? $avatar:$this->session->userdata('avatar');?>
-					<img src="<?php echo $userAvatar != "" ? $userAvatar : 'http://portal.ilmuberbagi.id/assets/img/foto/default.png';?>" alt="<?php echo $this->session->userdata('name');?>">
+					<?php $userAvatar = $avatar ? $avatar : $this->session->userdata('pp');?>
+					<img src="<?php echo $userAvatar ? $userAvatar : 'http://portal.ilmuberbagi.id/assets/img/foto/default.png';?>" alt="<?php echo $quoter;?>">
 				</div>
 				<div class="card-info">
 					<center><a class="title" href="<?php echo base_url().'setting/'.md5($qlist[0]['email']);?>"><?php echo $qlist[0]['first_name'].' '.$qlist[0]['last_name'];?></a></center>
-					<div class="desc" align="center">"<?php echo $qlist[0]['first_quote'];?>"</div>
+					<div class="desc" align="center">"<?php echo $motivation ? $motivation : $qlist[0]['first_quote'];?>"</div>
 				</div>
 				<div class="card-bottom">
 					<?php if(substr($qlist[0]['twitter'],0,4) == 'http'){ $link = $qlist[0]['twitter']; }else { $link = 'http://'.$qlist[0]['twitter']; }?>
-					<a target="_blank" href="<?php echo $link;?>" class="btn"><i class="icon-coffee"></i> Mampir <?php echo $qlist[0]['first_name'];?></a>
+					<a target="_blank" href="<?php echo $website? $website : $link;?>" class="btn"><i class="icon-coffee"></i> Mampir <?php echo $quoter;?></a>
 				</div>
 			</div>				
 			<!--Sidebar content-->
@@ -34,7 +34,7 @@
 		</div>
 		<div class="span9">
 			<!--Body content-->
-			<h2>Quote <?php echo $qlist[0]['first_name'];?></h2>
+			<h2>Quote <?php echo $quoter? $quoter : $qlist[0]['first_name'];?></h2>
 			<?php 
 				if(!empty($message)){ ?>
 					<div class="alert action">
@@ -46,6 +46,7 @@
 				$group = array('1' => 'Wisdom', 'Spirit', 'Joke');
 				if(!empty($qlist)){
 					foreach ($qlist as $data){
+						$user = $quoter?$quoter:$data['first_name'];
 						$link = base_url().'quotes/'.$data['group_name'].'/'.$data['qid'];
 						$deleteLink = base_url().'removequote/'.$data['qid'];
 						echo "<div class='list'>";
@@ -58,7 +59,7 @@
 						echo "<span class='btn-group'><button class='btn btn-mini'><i class='icon-heart'></i></button><button class='btn btn-mini'>".count($love['_'.$data['qid']])."</button></span>";
 						echo "<span class='btn-group'><button class='btn btn-mini'><i class='icon-thumbs-up'></i></button><button class='btn btn-mini'>".count($thumb['_'.$data['qid']])."</button></span>";
 						echo "</span>";
-						echo "<span class='pull-right'>".$data['first_name'].", ".date('d/M/Y H:i:s', strtotime($data['tanggal']))."</span></p>";
+						echo "<span class='pull-right'>".$user.", ".date('d/M/Y H:i:s', strtotime($data['tanggal']))."</span></p>";
 						echo "</div>";?>
 
 							<!-- Modal -->

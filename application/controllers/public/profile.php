@@ -32,6 +32,7 @@ class Profile extends CI_Controller{
 		if(!empty($user_api))
 			$data['avatar'] = $user_api[0]['member_image_profile'] ?  $user_api[0]['member_image_profile']: $this->session->userdata('avatar');
 
+		// print_r($this->session->all_userdata()); die();
 		
 		$this->load->view('public/profile', $data);
 		$data['q1'] = $this->quote_m->getQuote(1);

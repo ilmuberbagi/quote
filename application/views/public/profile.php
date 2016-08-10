@@ -34,7 +34,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<a href="http://localhost/ibf/adminportal" class="btn btn-primary">Masuk Portal</a>
+		<a href="http://portal.ilmuberbagi.id/dashboard" class="btn btn-primary">Masuk Portal</a>
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 	</div>
 </div>
